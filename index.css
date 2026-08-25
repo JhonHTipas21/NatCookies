@@ -1,0 +1,8 @@
+/* ==========================================================================
+   NAT Cookies - Main Design System Importer (index.css)
+   ========================================================================== */
+
+@import './css/variables.css';
+@import './css/base.css';
+@import './css/components.css';
+@import './css/views.css';
