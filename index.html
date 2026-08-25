@@ -29,7 +29,7 @@
           <img src="assets/baker.jpg" alt="Repostera NatCookies" class="baker-img">
         </div>
         <div class="home-brand">
-          <span class="brand-tag">Lotes pequeños y frescos</span>
+          <span class="brand-tag">Galletas estilo NY y mas.</span>
           <h1 class="brand-title">NatCookies</h1>
           <p class="brand-subtitle font-alt">Repostería Artesanal</p>
         </div>
@@ -134,11 +134,14 @@
             <p>Las galletas se eligen <strong>por caja</strong>: tú decides el tamaño y combinas los sabores que quieras de manera personalizada.</p>
           </div>
 
-          <div class="detail-actions">
+          <div class="detail-actions" style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
             <!-- If catering/item is direct, it shows add button, otherwise Arma tu caja -->
             <button id="detail-cta-btn" class="btn btn-primary btn-full-width" onclick="navigateTo('box-step1')">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
               <span>Armar caja</span>
+            </button>
+            <button id="detail-buy-individual-btn" class="btn btn-secondary btn-full-width" style="display: none;">
+              <span>Comprar Individual • $7.000 COP</span>
             </button>
           </div>
         </div>
