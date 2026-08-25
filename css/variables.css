@@ -1,0 +1,38 @@
+/* ==========================================================================
+   NAT Cookies - System Design Tokens (css/variables.css)
+   ========================================================================== */
+
+:root {
+  /* Brand Color Palette */
+  --natCream: #FAF6F0;     /* Fondo principal (cálido, limpio, premium) */
+  --natEspresso: #4A2E1B;  /* Texto principal, botones y contrastes */
+  --natGold: #D4A373;      /* Acentos, precios y detalles activos */
+  --natPeach: #E8C8A6;     /* Badges secundarias, contenedores suaves */
+  --natSage: #7C9A7A;      /* Éxito, barra de progreso y botón WhatsApp */
+  --natRose: #C97D7D;      /* Alertas, errores y cancelaciones */
+  --natWhite: #FFFFFF;     /* Fondos de elementos elevados */
+  
+  /* Transparencies & Blurs */
+  --espresso-05: rgba(74, 46, 27, 0.05);
+  --espresso-10: rgba(74, 46, 27, 0.1);
+  --espresso-20: rgba(74, 46, 27, 0.2);
+  --espresso-50: rgba(74, 46, 27, 0.5);
+  --gold-15: rgba(212, 163, 115, 0.15);
+  --sage-15: rgba(124, 154, 122, 0.15);
+  --white-90: rgba(255, 255, 255, 0.9);
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Elevation Shadows */
+  --shadow-sm: 0 2px 8px rgba(74, 46, 27, 0.04);
+  --shadow-md: 0 8px 24px rgba(74, 46, 27, 0.06);
+  --shadow-lg: 0 16px 40px rgba(74, 46, 27, 0.1);
+  
+  /* Transition Configurations */
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-medium: 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
