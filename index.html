@@ -60,7 +60,7 @@
 
       <!-- Catalog Sections: Catering & Especiales -->
       <section class="home-section" id="section-catering">
-        <h3 class="section-title">Catering y Detalles</h3>
+        <h3 class="section-title">Especialidades de la Casa</h3>
         <div class="products-grid-two" id="home-catering-grid">
           <!-- Dynamically populated via JS -->
         </div>
@@ -163,11 +163,21 @@
       </nav>
 
       <div class="box-options-container">
+        <!-- Galleta Individual Option Card -->
+        <div class="box-option-card" onclick="selectBoxSize('caja_x1')">
+          <div class="box-option-num font-alt">1</div>
+          <div class="box-option-details">
+            <h4 class="box-option-title">Galleta Individual</h4>
+            <p class="box-option-desc">1 galleta a elegir de tus sabores favoritos</p>
+          </div>
+          <div class="box-option-price">$7.000</div>
+        </div>
+
         <!-- Caja x2 Sizing Option Card -->
         <div class="box-option-card" onclick="selectBoxSize('caja_x2')">
           <div class="box-option-num font-alt">2</div>
           <div class="box-option-details">
-            <h4 class="box-option-title">2 piezas</h4>
+            <h4 class="box-option-title">Caja x2</h4>
             <p class="box-option-desc">2 galletas a elegir</p>
           </div>
           <div class="box-option-price">$13.000</div>
@@ -177,10 +187,45 @@
         <div class="box-option-card" onclick="selectBoxSize('caja_x3')">
           <div class="box-option-num font-alt">3</div>
           <div class="box-option-details">
-            <h4 class="box-option-title">3 piezas</h4>
+            <h4 class="box-option-title">Caja x3</h4>
             <p class="box-option-desc">3 galletas a elegir</p>
           </div>
           <div class="box-option-price">$18.000</div>
+        </div>
+
+        <!-- Section Divider for Desserts -->
+        <div style="width: 100%; margin: 24px 0 6px 0; text-align: left;">
+          <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--natGold);">Postres Individuales</span>
+        </div>
+
+        <!-- Brownie Option Card -->
+        <div class="box-option-card" onclick="window.selectCateringFromStep1('brownie')">
+          <div class="box-option-num font-alt" style="font-size: 1.1rem; color: var(--natGold);">B</div>
+          <div class="box-option-details">
+            <h4 class="box-option-title">Brownie Artesanal</h4>
+            <p class="box-option-desc">Brownie melcochudo con chispas de chocolate</p>
+          </div>
+          <div class="box-option-price">$7.000</div>
+        </div>
+
+        <!-- Pavé de Leche Klim Option Card -->
+        <div class="box-option-card" onclick="window.selectCateringFromStep1('pave_leche_klim')">
+          <div class="box-option-num font-alt" style="font-size: 1.1rem; color: var(--natGold);">P</div>
+          <div class="box-option-details">
+            <h4 class="box-option-title">Pavé de Leche Klim</h4>
+            <p class="box-option-desc">Delicioso postre frío en capas con Leche Klim</p>
+          </div>
+          <div class="box-option-price">$13.000</div>
+        </div>
+
+        <!-- Pavé de Arequipe Option Card -->
+        <div class="box-option-card" onclick="window.selectCateringFromStep1('pave_arequipe')">
+          <div class="box-option-num font-alt" style="font-size: 1.1rem; color: var(--natGold);">P</div>
+          <div class="box-option-details">
+            <h4 class="box-option-title">Pavé de Arequipe</h4>
+            <p class="box-option-desc">Postre frío en capas con arequipe artesanal</p>
+          </div>
+          <div class="box-option-price">$13.000</div>
         </div>
       </div>
     </div>
@@ -255,6 +300,14 @@
         <!-- Cart Item list wrapper -->
         <div class="cart-items-wrapper" id="cart-items-wrapper">
           <!-- Dynamically populated cart items -->
+        </div>
+
+        <!-- Add more products trigger -->
+        <div class="cart-add-more-wrapper" style="padding: 12px 24px 0 24px; text-align: center;">
+          <button class="btn btn-secondary btn-sm" onclick="closeCart()" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; border-radius: 12px; font-size: 0.82rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/></svg>
+            <span>+ Agregar otro producto</span>
+          </button>
         </div>
 
         <!-- Step 1 Footer -->
