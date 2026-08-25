@@ -15,7 +15,8 @@ import {
   removeItemFromCart, 
   calculateCartTotals, 
   onCartUpdated, 
-  formatCOP 
+  formatCOP,
+  checkStockAvailable
 } from './cart.js';
 import { 
   initBoxConfig, 
@@ -120,6 +121,7 @@ function handleRouteChanges(viewId, data) {
 function loadProductDetailView(productId, type) {
   let product = null;
   const ctaBtn = document.getElementById('detail-cta-btn');
+  const individualBtn = document.getElementById('detail-buy-individual-btn');
   const outOfStock = isOutOfStock(productId);
 
   if (type === 'individual') {
@@ -127,21 +129,33 @@ function loadProductDetailView(productId, type) {
     document.getElementById('detail-badge-tag').textContent = outOfStock ? "AGOTADO" : product.tag;
     document.getElementById('detail-badge-tag').className = `detail-badge ${outOfStock ? 'badge-color-rose' : `tag-${product.id}`}`;
     
+    individualBtn.style.display = 'block';
+    
     if (outOfStock) {
       ctaBtn.disabled = true;
       ctaBtn.querySelector('span').textContent = 'Temporalmente agotada';
       ctaBtn.querySelector('svg').style.display = 'none';
       ctaBtn.removeAttribute('onclick');
+      
+      individualBtn.disabled = true;
+      individualBtn.querySelector('span').textContent = 'Temporalmente agotada';
+      individualBtn.removeAttribute('onclick');
     } else {
       ctaBtn.disabled = false;
       ctaBtn.setAttribute('onclick', "window.navigateTo('box-step1')");
-      ctaBtn.querySelector('span').textContent = 'Armar caja';
+      ctaBtn.querySelector('span').textContent = 'Armar caja (Ahorra desde $6.000 c/u)';
       ctaBtn.querySelector('svg').style.display = 'block';
+      
+      individualBtn.disabled = false;
+      individualBtn.setAttribute('onclick', `window.addIndividualFromDetail('${product.id}')`);
+      individualBtn.querySelector('span').textContent = 'Llevar Individual • $7.000 COP';
     }
   } else {
     product = PRODUCTS.catering.find(c => c.id === productId);
     document.getElementById('detail-badge-tag').textContent = outOfStock ? "AGOTADO" : product.tag;
     document.getElementById('detail-badge-tag').className = `detail-badge ${outOfStock ? 'badge-color-rose' : 'tag-catering'}`;
+    
+    individualBtn.style.display = 'none';
     
     if (outOfStock) {
       ctaBtn.disabled = true;
@@ -200,7 +214,8 @@ function renderBuilderFlavorsRows() {
 }
 
 // Adjust quantity click handler inside Step 2 view
-function handleAdjustFlavorCount(cookieId, change) {
+async function handleAdjustFlavorCount(cookieId, change) {
+  await loadInventory();
   const success = adjustFlavorCount(cookieId, change);
   if (success) {
     renderBuilderFlavorsRows();
@@ -366,10 +381,26 @@ function closeCart() {
 }
 
 // Form action handler
-function handleCheckoutForm(event) {
+async function handleCheckoutForm(event) {
   event.preventDefault();
   const cart = getCart();
   if (cart.length === 0) return;
+
+  // Re-fetch latest inventory state from DB/LocalStorage before validating
+  await loadInventory();
+
+  // Final inventory stock validation safeguard before redirecting to WhatsApp
+  for (let i = 0; i < cart.length; i++) {
+    const item = cart[i];
+    const validation = checkStockAvailable(item.type, item.id, item.type === 'box' ? item.flavors : null, 0);
+    if (!validation.valid) {
+      const name = item.type === 'box' 
+        ? (PRODUCTS.individual.find(c => c.id === validation.productId)?.name || validation.productId)
+        : item.name;
+      alert(`Lo sentimos, algunas galletas sabor "${name}" de tu pedido se encuentran agotadas en este momento. Por favor, edita tu carrito.`);
+      return;
+    }
+  }
 
   const name = document.getElementById('client-name').value.trim();
   const phone = document.getElementById('client-phone').value.trim();
@@ -387,7 +418,8 @@ window.navigateTo = navigateTo;
 window.goBack = goBack;
 window.openProductDetail = (productId, productType) => navigateTo('product-detail', { id: productId, type: productType });
 
-window.selectBoxSize = (comboId) => {
+window.selectBoxSize = async (comboId) => {
+  await loadInventory();
   initBoxConfig(comboId);
   navigateTo('box-step2');
 };
@@ -399,12 +431,28 @@ window.resetActiveBox = () => {
   updateBuilderStep2Status();
 };
 
-window.addCateringFromDetail = (itemId) => {
+window.addCateringFromDetail = async (itemId) => {
+  await loadInventory();
   const success = addCateringToCart(itemId);
-  if (success) navigateTo('home');
+  if (success) {
+    navigateTo('home');
+    openCart();
+  }
 };
 
-window.updateItemQuantity = updateItemQuantity;
+window.addIndividualFromDetail = async (cookieId) => {
+  await loadInventory();
+  const success = addIndividualToCart(cookieId);
+  if (success) {
+    navigateTo('home');
+    openCart();
+  }
+};
+
+window.updateItemQuantity = async (index, amount) => {
+  await loadInventory();
+  updateItemQuantity(index, amount);
+};
 window.removeItemFromCart = removeItemFromCart;
 window.openCart = openCart;
 window.closeCart = closeCart;
