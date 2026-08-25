@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 5. Initial cart updates
   updateCartUI();
+
+  // 6. Initialize ambient background music
+  initMusicSystem();
 });
 
 // --- Renders Catalog Listings ---
@@ -519,3 +522,63 @@ window.toggleAddressField = () => {
 };
 
 window.handleCheckout = handleCheckoutForm;
+
+// --- Ambient Background Music System ---
+let musicPlaying = false;
+
+function initMusicSystem() {
+  const audio = document.getElementById('bg-music');
+  const toggleBtn = document.getElementById('music-toggle-btn');
+  if (!audio || !toggleBtn) return;
+
+  const eqContainer = toggleBtn.querySelector('.music-bars');
+  const soundIcon = toggleBtn.querySelector('.sound-icon-svg');
+  const muteIcon = toggleBtn.querySelector('.mute-icon-svg');
+
+  const startMusic = async () => {
+    try {
+      audio.volume = 0.4; // Soft ambient volume
+      await audio.play();
+      musicPlaying = true;
+      if (eqContainer) eqContainer.classList.add('playing');
+      if (soundIcon) soundIcon.style.display = 'block';
+      if (muteIcon) muteIcon.style.display = 'none';
+    } catch (err) {
+      console.log("Autoplay block active. Waiting for user interaction...");
+    }
+  };
+
+  // Toggle play / pause status
+  window.toggleMusic = () => {
+    if (audio.paused) {
+      audio.volume = 0.4;
+      audio.play().then(() => {
+        musicPlaying = true;
+        if (eqContainer) eqContainer.classList.add('playing');
+        if (soundIcon) soundIcon.style.display = 'block';
+        if (muteIcon) muteIcon.style.display = 'none';
+      }).catch(err => console.error("Error playing audio: ", err));
+    } else {
+      audio.pause();
+      musicPlaying = false;
+      if (eqContainer) eqContainer.classList.remove('playing');
+      if (soundIcon) soundIcon.style.display = 'none';
+      if (muteIcon) muteIcon.style.display = 'block';
+    }
+  };
+
+  // Try to play immediately on page load
+  startMusic();
+
+  // Listeners to start audio on the first tap/click if autoplay was blocked
+  const handleAutoplayUnblock = () => {
+    if (!musicPlaying) {
+      startMusic();
+    }
+    document.removeEventListener('click', handleAutoplayUnblock);
+    document.removeEventListener('touchstart', handleAutoplayUnblock);
+  };
+
+  document.addEventListener('click', handleAutoplayUnblock);
+  document.addEventListener('touchstart', handleAutoplayUnblock);
+}

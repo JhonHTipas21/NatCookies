@@ -392,6 +392,25 @@
     </div>
   </div>
 
+  <!-- Background Ambient Music System -->
+  <audio id="bg-music" src="assets/musicNat.mp3" loop preload="auto"></audio>
+  
+  <!-- Floating Music Toggle Controller -->
+  <button id="music-toggle-btn" class="music-toggle-card" onclick="window.toggleMusic()" aria-label="Controlar música">
+    <div class="music-bars">
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+    </div>
+    <!-- Speaker / Sound icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up-fill sound-icon-svg" viewBox="0 0 16 16">
+      <path d="M11.536 14.01A8.47 8.47 0 0 0 14.02 8a8.47 8.47 0 0 0-2.484-6.01C11.218 1.64 10.5 2.22 10.5 2.91v10.18c0 .69.718 1.27 1.036 1.1-.001 0-.001 0 0 0zM9.736 12.394A5.968 5.968 0 0 0 11 8a5.968 5.968 0 0 0-1.264-4.394C9.518 3.28 9 3.73 9 4.31v7.38c0 .58.518 1.03.736.704zM8 3c0-.986-.837-1.726-1.706-1.332L3.89 3.125H2.5A1.5 1.5 0 0 0 1 4.625v6.75A1.5 1.5 0 0 0 2.5 12.875h1.39l2.404 1.457C7.163 14.726 8 13.986 8 13V3z"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-mute-fill mute-icon-svg" viewBox="0 0 16 16" style="display: none;">
+      <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.854.353L4.146 10.354H2.5A.5.5 0 0 1 2 10V6a.5.5 0 0 1 .5-.5h1.646l2.217-2.217a.5.5 0 0 1 .354-.133zm3.536.853a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 8l-2.54-2.54a.5.5 0 0 1 0-.708z"/>
+    </svg>
+  </button>
+
   <!-- App JavaScript logic (Refactored to SOLID modules) -->
   <script type="module" src="js/app.js"></script>
 </body>
