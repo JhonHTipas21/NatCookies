@@ -16,6 +16,7 @@ export const PRODUCTS = {
   
   // Cajas personalizadas
   combos: {
+    caja_x1: { id: 'caja_x1', name: 'Galleta Individual', price: 7000, size: 1 },
     caja_x2: { id: 'caja_x2', name: 'Caja x2', price: 13000, size: 2 },
     caja_x3: { id: 'caja_x3', name: 'Caja x3', price: 18000, size: 3 }
   },

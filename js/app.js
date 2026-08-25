@@ -249,11 +249,21 @@ function updateBuilderStep2Status() {
 // Adds full customized box configuration to cart
 function handleAddBuiltBoxToCart() {
   const flavors = getBuiltFlavorsList();
-  const success = addBoxToCart(activeBoxConfig.id, flavors);
-  if (success) {
-    resetActiveBox();
-    navigateTo('home');
-    openCart();
+  if (activeBoxConfig.size === 1) {
+    const flavorId = flavors[0];
+    const success = addIndividualToCart(flavorId);
+    if (success) {
+      resetActiveBox();
+      navigateTo('home');
+      openCart();
+    }
+  } else {
+    const success = addBoxToCart(activeBoxConfig.id, flavors);
+    if (success) {
+      resetActiveBox();
+      navigateTo('home');
+      openCart();
+    }
   }
 }
 
@@ -432,6 +442,15 @@ window.resetActiveBox = () => {
 };
 
 window.addCateringFromDetail = async (itemId) => {
+  await loadInventory();
+  const success = addCateringToCart(itemId);
+  if (success) {
+    navigateTo('home');
+    openCart();
+  }
+};
+
+window.selectCateringFromStep1 = async (itemId) => {
   await loadInventory();
   const success = addCateringToCart(itemId);
   if (success) {
