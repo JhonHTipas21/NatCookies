@@ -114,7 +114,7 @@ export function addIndividualToCart(cookieId) {
       type: 'individual',
       id: cookieId,
       name: `Galleta ${cookie.name}`,
-      price: cookie.price,
+      price: 7000,
       quantity: 1,
       img: cookie.img
     });
