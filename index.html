@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAT Cookies - Repostería Artesanal Premium</title>
+  <meta name="description" content="Personaliza tus cajas de galletas artesanales de NAT Cookies. Hechas a mano con ingredientes premium.">
+  
+  <!-- Google Fonts: Playfair Display for headings and Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- App Wrapper representing a mobile interface centered on desktop viewports -->
+  <div class="app-wrapper">
+    
+    <!-- ==========================================
+         VIEW: HOME
+         ========================================== -->
+    <div id="view-home" class="app-view active">
+      <!-- Welcome Hero Header -->
+      <header class="home-hero">
+        <div class="baker-card">
+          <img src="assets/baker.jpg" alt="Repostera NatCookies" class="baker-img">
+        </div>
+        <div class="home-brand">
+          <span class="brand-tag">Lotes pequeños y frescos</span>
+          <h1 class="brand-title">NatCookies</h1>
+          <p class="brand-subtitle font-alt">Repostería Artesanal</p>
+        </div>
+      </header>
+
+      <!-- Highlight Banner: Custom Box Builder Trigger -->
+      <section class="banner-builder" onclick="navigateTo('box-step1')">
+        <div class="banner-content">
+          <span class="banner-sub">¿QUÉ SE TE ANTOJA?</span>
+          <h2 class="banner-title">Arma tu caja</h2>
+          <button class="btn-banner-action">
+            <span>Empezar pedido</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+        <div class="banner-image-wrapper">
+          <img src="assets/chips.jpg" alt="Galleta clásica" class="banner-img">
+        </div>
+      </section>
+
+      <!-- Catalog Sections: Nuestros Sabores -->
+      <section class="home-section">
+        <h3 class="section-title">Nuestros sabores</h3>
+        <div class="products-grid-two" id="home-cookies-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </section>
+
+      <!-- Catalog Sections: Catering & Especiales -->
+      <section class="home-section" id="section-catering">
+        <h3 class="section-title">Catering y Detalles</h3>
+        <div class="products-grid-two" id="home-catering-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </section>
+
+      <!-- Premium Brand Footer (Estilo Sam Bakes) -->
+      <footer class="premium-footer">
+        <!-- Baker Outline Illustration -->
+        <div class="footer-illustration">
+          <img src="assets/ilustracion.jpeg" alt="Ilustración NatCookies" class="footer-illust-img">
+        </div>
+        
+        <h2 class="footer-brand-title font-serif">NatCookies</h2>
+        <div class="footer-divider-heart">🤎</div>
+        
+        <!-- Contact Badges / Access links -->
+        <div class="footer-social-links">
+          <a href="https://wa.me/573205730481" target="_blank" class="footer-link-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.907h.004c4.368 0 7.926-3.558 7.93-7.93a7.897 7.897 0 0 0-2.327-5.615zM7.994 13.011a6.56 6.56 0 0 1-3.393-.936l-.243-.144-2.51.657.669-2.446-.158-.251A6.56 6.56 0 0 1 1.701 7.927C1.706 4.385 4.582 1.51 8.004 1.51c1.656 0 3.212.646 4.379 1.815a6.586 6.586 0 0 1 1.888 4.673c-.009 3.541-2.886 6.414-6.307 6.414zm3.673-4.981c-.2-.1-.18-.088-.415-.22-.047-.02-.28-.152-.35-.187-.07-.035-.12-.05-.17.025-.05.075-.19.24-.23.29-.04.05-.08.055-.28.045-.2-.01-.84-.31-1.6-.99-.59-.525-.99-1.175-1.105-1.295-.115-.12-.012-.185.088-.285.09-.09.2-.23.3-.35.1-.115.133-.195.2-.325.066-.13.033-.242-.017-.341-.05-.1-.18-.48-.25-.64-.07-.162-.14-.14-.2-.142-.053-.002-.113-.002-.173-.002-.06 0-.157.022-.24.114-.083.091-.318.31-.318.756 0 .446.324.876.369.935.045.059.637.973 1.543 1.363.215.092.383.147.514.189.217.069.414.059.57.036.173-.025.53-.217.604-.427.075-.21.075-.389.053-.427-.023-.038-.088-.05-.288-.15z"/></svg>
+            <span>+57 320 573 0481</span>
+          </a>
+          <a href="https://www.instagram.com/natcookies.artesanal?igsi=MWEwdWRjbWJmMm1wcw==" target="_blank" class="footer-link-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.298.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.999 0zm-.08 1.44h.08c2.117 0 2.36.007 3.193.046.777.035 1.2.166 1.48.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.832.047 1.077.047 3.193s-.008 2.361-.046 3.193c-.036.78-.166 1.203-.275 1.48a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.838.038-1.07.047-3.193.047s-2.361-.008-3.193-.046c-.78-.036-1.203-.166-1.48-.275a2.5 2.5 0 0 1-.92-.599 2.5 2.5 0 0 1-.6-1.48c-.035-.78-.046-1.07-.046-3.193s.01-2.36.047-3.193c.036-.78.166-1.2.275-1.48.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg>
+            <span>NATCOOKIES.ARTESANAL</span>
+          </a>
+          <a href="https://www.tiktok.com/@natcookies_0?_r=1&_t=ZS-99AdreL8Tif" target="_blank" class="footer-link-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16"><path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-2.512V11c0 2.761-2.238 5-5 5s-5-2.239-5-5 2.238-5 5-5a4.917 4.917 0 0 1 1.753.318V2.836A5.002 5.002 0 0 1 9 0"/></svg>
+            <span>NATCOOKIES_0</span>
+          </a>
+        </div>
+        
+        <!-- Details Locations -->
+        <div class="footer-info-details">
+          <div class="footer-info-group">
+            <span class="info-label">Ubicación principal</span>
+            <span class="info-val">Pradera, Valle del Cauca, Colombia</span>
+          </div>
+          <div class="footer-info-group" style="margin-top: 14px;">
+            <span class="info-label">Horario de atención</span>
+            <span class="info-val">Lunes a Sábado: 9:00 am — 6:00 pm</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ==========================================
+         VIEW: PRODUCT DETAIL
+         ========================================== -->
+    <div id="view-product-detail" class="app-view">
+      <nav class="view-navbar">
+        <button class="nav-back-btn" onclick="goBack()" aria-label="Volver atrás">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+      </nav>
+
+      <div class="detail-container">
+        <div class="detail-img-wrapper">
+          <img id="detail-cookie-img" src="assets/macadamia.jpg" alt="Cookie Detail" class="detail-cookie-img">
+        </div>
+        
+        <div class="detail-content-card">
+          <div class="detail-badges">
+            <span id="detail-badge-tag" class="detail-badge badge-color-accent">NUEVA</span>
+            <span class="detail-badge badge-color-success">DISPONIBLE</span>
+          </div>
+          
+          <h2 id="detail-cookie-name" class="detail-title font-alt">Nombre de Galleta</h2>
+          <p id="detail-cookie-desc" class="detail-desc">Descripción detallada de la galleta premium artesanal.</p>
+          
+          <div class="box-info-banner">
+            <p>Las galletas se eligen <strong>por caja</strong>: tú decides el tamaño y combinas los sabores que quieras de manera personalizada.</p>
+          </div>
+
+          <div class="detail-actions">
+            <!-- If catering/item is direct, it shows add button, otherwise Arma tu caja -->
+            <button id="detail-cta-btn" class="btn btn-primary btn-full-width" onclick="navigateTo('box-step1')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+              <span>Armar caja</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         VIEW: BOX STEP 1 - CHOOSE BOX SIZE
+         ========================================== -->
+    <div id="view-box-step1" class="app-view">
+      <nav class="view-navbar">
+        <button class="nav-back-btn" onclick="goBack()" aria-label="Volver atrás">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <div class="navbar-title">
+          <span class="nav-step">paso 1</span>
+          <h2 class="nav-heading font-serif">Elige tu caja</h2>
+        </div>
+      </nav>
+
+      <div class="box-options-container">
+        <!-- Caja x2 Sizing Option Card -->
+        <div class="box-option-card" onclick="selectBoxSize('caja_x2')">
+          <div class="box-option-num font-alt">2</div>
+          <div class="box-option-details">
+            <h4 class="box-option-title">2 piezas</h4>
+            <p class="box-option-desc">2 galletas a elegir</p>
+          </div>
+          <div class="box-option-price">$13.000</div>
+        </div>
+
+        <!-- Caja x3 Sizing Option Card -->
+        <div class="box-option-card" onclick="selectBoxSize('caja_x3')">
+          <div class="box-option-num font-alt">3</div>
+          <div class="box-option-details">
+            <h4 class="box-option-title">3 piezas</h4>
+            <p class="box-option-desc">3 galletas a elegir</p>
+          </div>
+          <div class="box-option-price">$18.000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         VIEW: BOX STEP 2 - CUSTOMIZE FLAVORS
+         ========================================== -->
+    <div id="view-box-step2" class="app-view">
+      <nav class="view-navbar">
+        <button class="nav-back-btn" onclick="goBack()" aria-label="Volver atrás">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <div class="navbar-title">
+          <span class="nav-step">paso 2</span>
+          <h2 id="builder-step2-heading" class="nav-heading font-serif">Llena tu caja</h2>
+        </div>
+        <button class="navbar-reset-link" onclick="resetActiveBox()">Quitar</button>
+      </nav>
+
+      <!-- Progress Tracking Panel -->
+      <div class="progress-panel">
+        <div class="progress-info">
+          <span class="progress-label">Galletas en tu caja</span>
+          <span id="builder-count-ratio" class="progress-ratio">0 / 3</span>
+        </div>
+        <div class="progress-bar-track">
+          <div id="builder-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+        <div id="builder-success-indicator" class="progress-success-label" style="display: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Caja lista</span>
+        </div>
+      </div>
+
+      <!-- Flavors Customizer Rows List -->
+      <div class="flavors-row-list" id="builder-flavors-list">
+        <!-- Dynamically rendered flavors rows with increment controllers -->
+      </div>
+
+      <!-- Sticky Builder Bottom CTA Button -->
+      <div class="builder-bottom-sticky">
+        <button id="builder-submit-btn" class="btn btn-primary btn-full-width" disabled onclick="addBuiltBoxToCart()">
+          Faltan galletas
+        </button>
+      </div>
+    </div>
+
+  </div> <!-- End App Wrapper -->
+
+  <!-- Floating Shopping Cart Badge Trigger -->
+  <button id="cart-toggle-btn" class="cart-toggle-badge" aria-label="Ver pedido">
+    <div class="cart-badge-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-cart-svg"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span id="cart-badge-count" class="badge-count">0</span>
+    </div>
+    <span id="cart-badge-total" class="badge-total">$0</span>
+  </button>
+
+  <!-- Sliding Shopping Cart Drawer Overlay -->
+  <div id="cart-sidebar" class="cart-sidebar-overlay">
+    <div class="cart-sidebar-container">
+      
+      <!-- STEP 1: TU PEDIDO (ITEMS SUMMARY) -->
+      <div id="cart-step-items" class="cart-step-panel active">
+        <div class="cart-sidebar-header">
+          <h4 class="cart-sidebar-title">Tu Pedido</h4>
+          <button class="cart-sidebar-close" onclick="closeCart()" aria-label="Cerrar pedido">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <!-- Cart Item list wrapper -->
+        <div class="cart-items-wrapper" id="cart-items-wrapper">
+          <!-- Dynamically populated cart items -->
+        </div>
+
+        <!-- Step 1 Footer -->
+        <div class="cart-step-footer" id="cart-step1-footer" style="display: none;">
+          <div class="cart-total-summary">
+            <span class="total-label">Subtotal:</span>
+            <span id="cart-subtotal-price" class="total-price">$0 COP</span>
+          </div>
+          <button class="btn btn-primary btn-full-width" id="btn-goto-checkout" onclick="goToCartStep('form')">
+            Ingresar Datos de Envío
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: DATOS DE ENVÍO -->
+      <div id="cart-step-form" class="cart-step-panel" style="display: none;">
+        <div class="cart-sidebar-header">
+          <button class="nav-back-btn" onclick="goToCartStep('items')" aria-label="Volver al carrito" style="width:34px; height:34px; margin-bottom: 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          </button>
+          <h4 class="cart-sidebar-title" style="flex-grow:1; text-align:center; margin-right:34px;">Datos de Entrega</h4>
+          <button class="cart-sidebar-close" onclick="closeCart()" aria-label="Cerrar pedido">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <form id="checkout-form" class="checkout-form cart-form-wrapper" onsubmit="handleCheckout(event)">
+          <div class="cart-form-fields">
+            <div class="form-group">
+              <label for="client-name" class="form-label">Nombre Completo *</label>
+              <input type="text" id="client-name" class="form-input" placeholder="Ej. Camila Pérez" required>
+            </div>
+
+            <div class="form-group">
+              <label for="client-phone" class="form-label">Teléfono de Contacto *</label>
+              <input type="tel" id="client-phone" class="form-input" placeholder="Ej. 300 123 4567" required>
+            </div>
+
+            <div class="form-group">
+              <label for="delivery-method" class="form-label">Método de Entrega *</label>
+              <select id="delivery-method" class="form-input" onchange="toggleAddressField()" required>
+                <option value="domicilio" selected>Envío a Domicilio (+$3.000 COP)</option>
+                <option value="recogida">Recoger en Tienda (Gratis)</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="address-group">
+              <label for="client-address" class="form-label">Dirección de Entrega *</label>
+              <input type="text" id="client-address" class="form-input" placeholder="Ej. Calle 45 # 12 - 34" required>
+            </div>
+
+            <div class="form-group">
+              <label for="client-notes" class="form-label">Notas Especiales (Opcional)</label>
+              <textarea id="client-notes" class="form-input form-textarea" placeholder="Ej. Alergias, fecha/hora de entrega, dedicatoria para regalo..."></textarea>
+            </div>
+          </div>
+
+          <!-- Step 2 Footer / Summary of Costs -->
+          <div class="cart-step-footer">
+            <div class="cart-price-breakdown">
+              <div class="breakdown-row">
+                <span>Subtotal:</span>
+                <span id="breakdown-subtotal">$0 COP</span>
+              </div>
+              <div class="breakdown-row">
+                <span>Domicilio:</span>
+                <span id="breakdown-shipping">$0 COP</span>
+              </div>
+              <div class="breakdown-row font-serif" style="font-weight: 700; font-size: 1.2rem; border-top: 1px solid var(--espresso-05); margin-top: 8px; padding-top: 8px;">
+                <span>Total a Pagar:</span>
+                <span id="breakdown-total">$0 COP</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-whatsapp" style="margin-top: 8px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.907h.004c4.368 0 7.926-3.558 7.93-7.93a7.897 7.897 0 0 0-2.327-5.615zM7.994 13.011a6.56 6.56 0 0 1-3.393-.936l-.243-.144-2.51.657.669-2.446-.158-.251A6.56 6.56 0 0 1 1.701 7.927C1.706 4.385 4.582 1.51 8.004 1.51c1.656 0 3.212.646 4.379 1.815a6.586 6.586 0 0 1 1.888 4.673c-.009 3.541-2.886 6.414-6.307 6.414zm3.673-4.981c-.2-.1-.18-.088-.415-.22-.047-.02-.28-.152-.35-.187-.07-.035-.12-.05-.17.025-.05.075-.19.24-.23.29-.04.05-.08.055-.28.045-.2-.01-.84-.31-1.6-.99-.59-.525-.99-1.175-1.105-1.295-.115-.12-.012-.185.088-.285.09-.09.2-.23.3-.35.1-.115.133-.195.2-.325.066-.13.033-.242-.017-.341-.05-.1-.18-.48-.25-.64-.07-.162-.14-.14-.2-.142-.053-.002-.113-.002-.173-.002-.06 0-.157.022-.24.114-.083.091-.318.31-.318.756 0 .446.324.876.369.935.045.059.637.973 1.543 1.363.215.092.383.147.514.189.217.069.414.059.57.036.173-.025.53-.217.604-.427.075-.21.075-.389.053-.427-.023-.038-.088-.05-.288-.15z"/></svg>
+              <span>Enviar Pedido por WhatsApp</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- App JavaScript logic (Refactored to SOLID modules) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
