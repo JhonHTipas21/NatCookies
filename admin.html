@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAT Cookies - Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  
+  <style>
+    /* Admin view refinements extending index.css */
+    .admin-card {
+      background-color: var(--natWhite);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--espresso-05);
+      margin-top: 40px;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    
+    .admin-title {
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    
+    .admin-subtitle {
+      font-size: 0.85rem;
+      color: rgba(74, 46, 27, 0.6);
+      text-align: center;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .admin-login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .error-msg {
+      color: var(--natRose);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .success-msg {
+      color: #557153;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 12px;
+      background-color: var(--sage-15);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    /* Inventory Rows */
+    .inventory-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .inventory-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background-color: var(--natCream);
+      border-radius: 12px;
+      border: 1px solid var(--espresso-05);
+    }
+
+    .inventory-row-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .inventory-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--espresso-05);
+    }
+
+    .inventory-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .inventory-tag {
+      font-size: 0.65rem;
+      color: var(--natGold);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .inventory-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .inventory-stock-input {
+      width: 80px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--natPeach);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--natEspresso);
+      text-align: center;
+    }
+
+    .inventory-stock-input:focus {
+      outline: none;
+      border-color: var(--natGold);
+    }
+
+    .admin-header-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--espresso-05);
+      padding-bottom: 16px;
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--natRose);
+      color: var(--natRose);
+      padding: 6px 12px;
+      border-radius: 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+
+    .btn-logout:hover {
+      background-color: rgba(201, 125, 125, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-wrapper">
+    
+    <!-- HEADER -->
+    <header class="home-hero">
+      <div class="home-brand">
+        <h1 class="brand-title">NatCookies</h1>
+        <p class="brand-subtitle font-alt">Panel Administrativo</p>
+      </div>
+    </header>
+
+    <!-- SCREEN 1: LOGIN CARD -->
+    <div id="panel-login" class="admin-card" style="display: none;">
+      <h3 class="admin-title">Acceso Restringido</h3>
+      <p class="admin-subtitle">Identificación requerida</p>
+      
+      <form class="admin-login-form" id="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="passcode" class="form-label">Contraseña de Administrador</label>
+          <input type="password" id="passcode" class="form-input" placeholder="Ej. ••••••" required>
+          <div id="login-error" class="error-msg" style="display: none;"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+      </form>
+    </div>
+
+    <!-- SCREEN 2: INVENTORY STOCK EDITOR -->
+    <div id="panel-editor" class="admin-card" style="display: none;">
+      <div class="admin-header-actions">
+        <div>
+          <h3 class="font-serif">Control de Inventario</h3>
+          <span class="inventory-tag">Actualización en tiempo real</span>
+        </div>
+        <button class="btn-logout" onclick="handleLogout()">Salir</button>
+      </div>
+
+      <div class="inventory-list" id="inventory-list-container">
+        <!-- Dynamically rendered stock inputs -->
+      </div>
+
+      <button class="btn btn-primary btn-full-width" id="btn-save-inventory" onclick="saveActiveInventory()">
+        Guardar Inventario
+      </button>
+      
+      <div id="save-status" class="success-msg" style="display: none;"></div>
+    </div>
+
+  </div> <!-- End App Wrapper -->
+
+  <script type="module">
+    import { CONFIG } from './js/config.js';
+    import { PRODUCTS } from './js/products.js';
+    import { loadInventory, saveInventory } from './js/inventory.js';
+
+    // Verify session state on load
+    window.addEventListener('DOMContentLoaded', async () => {
+      const isAuth = sessionStorage.getItem('natcookies_admin_authenticated');
+      
+      if (isAuth === 'true') {
+        await showEditorPanel();
+      } else {
+        document.getElementById('panel-login').style.display = 'block';
+      }
+    });
+
+    // Login Form Handler
+    window.handleLogin = (event) => {
+      event.preventDefault();
+      const code = document.getElementById('passcode').value;
+      const errorDiv = document.getElementById('login-error');
+
+      if (code === CONFIG.ADMIN_PASSCODE) {
+        sessionStorage.setItem('natcookies_admin_authenticated', 'true');
+        errorDiv.style.display = 'none';
+        showEditorPanel();
+      } else {
+        errorDiv.textContent = 'Contraseña incorrecta. Intente nuevamente.';
+        errorDiv.style.display = 'block';
+        document.getElementById('passcode').value = '';
+      }
+    };
+
+    // Logout Handler
+    window.handleLogout = () => {
+      sessionStorage.removeItem('natcookies_admin_authenticated');
+      document.getElementById('panel-editor').style.display = 'none';
+      document.getElementById('panel-login').style.display = 'block';
+      document.getElementById('passcode').value = '';
+    };
+
+    // Populate and display Editor Panel
+    async function showEditorPanel() {
+      document.getElementById('panel-login').style.display = 'none';
+      const editorPanel = document.getElementById('panel-editor');
+      editorPanel.style.display = 'block';
+
+      // Load stock quantities
+      const stock = await loadInventory();
+
+      // Render product stock listings
+      const container = document.getElementById('inventory-list-container');
+      
+      let htmlContent = '';
+      
+      // Render cookies
+      PRODUCTS.individual.forEach(c => {
+        const qty = stock[c.id] !== undefined ? stock[c.id] : 0;
+        htmlContent += `
+          <div class="inventory-row">
+            <div class="inventory-row-info">
+              <img src="${c.img}" alt="${c.name}" class="inventory-thumb">
+              <div>
+                <h4 class="inventory-name">Galleta ${c.name}</h4>
+                <span class="inventory-tag">Sabor</span>
+              </div>
+            </div>
+            <div class="inventory-input-wrapper">
+              <input type="number" min="0" max="9999" class="inventory-stock-input" data-id="${c.id}" value="${qty}">
+            </div>
+          </div>
+        `;
+      });
+
+      // Render catering options
+      PRODUCTS.catering.forEach(item => {
+        const qty = stock[item.id] !== undefined ? stock[item.id] : 0;
+        htmlContent += `
+          <div class="inventory-row">
+            <div class="inventory-row-info">
+              <img src="${item.img}" alt="${item.name}" class="inventory-thumb">
+              <div>
+                <h4 class="inventory-name">${item.name}</h4>
+                <span class="inventory-tag">Catering</span>
+              </div>
+            </div>
+            <div class="inventory-input-wrapper">
+              <input type="number" min="0" max="9999" class="inventory-stock-input" data-id="${item.id}" value="${qty}">
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = htmlContent;
+    }
+
+    // Save edited quantities to database
+    window.saveActiveInventory = async () => {
+      const saveBtn = document.getElementById('btn-save-inventory');
+      const statusDiv = document.getElementById('save-status');
+      
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Guardando...';
+
+      const inputs = document.querySelectorAll('.inventory-stock-input');
+      const updatedInventory = {};
+
+      inputs.forEach(input => {
+        const id = input.getAttribute('data-id');
+        const val = parseInt(input.value, 10);
+        updatedInventory[id] = isNaN(val) ? 0 : val;
+      });
+
+      // Sincronizar
+      const success = await saveInventory(updatedInventory);
+
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Guardar Inventario';
+
+      if (success) {
+        statusDiv.textContent = 'Inventario guardado e integrado correctamente.';
+        statusDiv.style.backgroundColor = 'var(--sage-15)';
+        statusDiv.style.color = '#557153';
+        statusDiv.style.display = 'block';
+      } else {
+        statusDiv.textContent = 'Error al guardar en base de datos. Se guardó localmente.';
+        statusDiv.style.backgroundColor = 'rgba(201, 125, 125, 0.15)';
+        statusDiv.style.color = '#a45a5a';
+        statusDiv.style.display = 'block';
+      }
+
+      // Fade out banner after 3 seconds
+      setTimeout(() => {
+        statusDiv.style.display = 'none';
+      }, 3500);
+    };
+  </script>
+</body>
+</html>
