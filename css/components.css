@@ -1,0 +1,145 @@
+/* ==========================================================================
+   NAT Cookies - Reusable UI Components (css/components.css)
+   ========================================================================== */
+
+/* Button Styling system */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background-color: var(--natEspresso);
+  color: var(--natCream);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #352013;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--natEspresso);
+  border-color: var(--natEspresso);
+  box-shadow: none;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--espresso-10);
+}
+
+.btn-whatsapp {
+  background-color: var(--natSage);
+  color: var(--natWhite);
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  margin-top: 16px;
+  border: none;
+}
+
+.btn-whatsapp:hover:not(:disabled) {
+  background-color: #6a8568;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.btn:disabled {
+  background-color: #bbb0a4;
+  color: var(--natCream);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Badges systems */
+.detail-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.badge-color-accent {
+  background-color: var(--natPeach);
+  color: var(--natEspresso);
+}
+
+.badge-color-success {
+  background-color: var(--sage-15);
+  color: #557153;
+}
+
+.badge-color-rose {
+  background-color: rgba(201, 125, 125, 0.15);
+  color: #a45a5a;
+}
+
+/* Form Groups & Inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(74, 46, 27, 0.85);
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--natPeach);
+  background-color: var(--natCream);
+  color: var(--natEspresso);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-input::placeholder {
+  color: rgba(74, 46, 27, 0.4);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--natGold);
+  box-shadow: 0 0 0 3px var(--natGold-15);
+  background-color: var(--natWhite);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* Global Transition Fade Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
