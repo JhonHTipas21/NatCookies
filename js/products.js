@@ -22,7 +22,8 @@ export const PRODUCTS = {
   
   // Catering y Detalles de Regalo
   catering: [
-    // { id: 'mesa_dulce', name: 'Mesa Dulce (x50)', desc: 'Arreglo decorativo con mini-galletas surtidas.', price: 180000, img: 'assets/mesa_dulce.jpg', tag: 'Eventos' },
-    // { id: 'detalle_regalo', name: 'Detalle de Regalo', desc: 'Caja premium envuelta en cinta (incluye galletas).', price: 32000, img: 'assets/detalle_regalo.jpg', tag: 'Especial' }
+    { id: 'brownie', name: 'Brownie Artesanal', desc: 'Brownie melcochudo con chispas de chocolate semi-amargo.', price: 7000, img: 'assets/brownie.jpeg', tag: 'Nuevo' },
+    { id: 'pave_leche_klim', name: 'Pavé de Leche Klim', desc: 'Delicioso postre frío en capas con crema y leche Klim.', price: 13000, img: 'assets/pavelecheklim.jpeg', tag: 'Exclusivo' },
+    { id: 'pave_arequipe', name: 'Pavé de Arequipe', desc: 'Suave postre frío con capas de arequipe artesanal y galleta.', price: 13000, img: 'assets/pavearequipe.jpeg', tag: 'Favorito' }
   ]
 };
