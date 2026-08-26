@@ -23,7 +23,7 @@ export const PRODUCTS = {
   
   // Catering y Detalles de Regalo
   catering: [
-    { id: 'brownie', name: 'Brownie Artesanal', desc: 'Brownie melcochudo con chispas de chocolate semi-amargo.', price: 7000, img: 'assets/brownie.jpeg', tag: 'Nuevo' },
+    { id: 'brownie', name: 'Brownie Artesanal', desc: 'Brownie melcochudo con chispas de chocolate semi-amargo.', price: 6000, img: 'assets/brownie.jpeg', tag: 'Nuevo' },
     { id: 'pave_leche_klim', name: 'Pavé de Leche Klim', desc: 'Delicioso postre frío en capas con crema y leche Klim.', price: 13000, img: 'assets/pavelecheklim.jpeg', tag: 'Exclusivo' },
     { id: 'pave_arequipe', name: 'Pavé de Arequipe', desc: 'Suave postre frío con capas de arequipe artesanal y galleta.', price: 13000, img: 'assets/pavearequipe.jpeg', tag: 'Favorito' }
   ]
