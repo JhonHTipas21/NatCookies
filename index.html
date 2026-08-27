@@ -359,6 +359,40 @@
               <input type="text" id="client-address" class="form-input" placeholder="Ej. Calle 45 # 12 - 34" required>
             </div>
 
+            <!-- Método de Pago -->
+            <div class="form-group">
+              <label class="form-label">Método de Pago *</label>
+              <div class="payment-method-selector" style="display: flex; gap: 12px; margin-top: 4px;">
+                <label class="payment-option-card active" id="pay-cash-label" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; border-radius: 12px; border: 2px solid var(--natEspresso); background-color: var(--natCream); cursor: pointer; transition: all var(--transition-fast);">
+                  <input type="radio" name="payment-method" id="payment-cash" value="efectivo" checked style="display: none;" onchange="window.togglePaymentDetails('efectivo')">
+                  <span style="font-weight: 700; font-size: 0.88rem; color: var(--natEspresso); letter-spacing: 0.5px;">Efectivo</span>
+                  <span style="font-size: 0.68rem; color: rgba(74, 46, 27, 0.6); margin-top: 2px;">Pago contra entrega</span>
+                </label>
+                
+                <label class="payment-option-card" id="pay-nequi-label" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px; border-radius: 12px; border: 1px solid var(--natPeach); background-color: transparent; cursor: pointer; transition: all var(--transition-fast);">
+                  <input type="radio" name="payment-method" id="payment-nequi" value="nequi" style="display: none;" onchange="window.togglePaymentDetails('nequi')">
+                  <span style="font-weight: 700; font-size: 0.88rem; color: var(--natEspresso); letter-spacing: 0.5px;">Nequi</span>
+                  <span style="font-size: 0.68rem; color: rgba(74, 46, 27, 0.6); margin-top: 2px;">Transferencia previa</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Detalles de Pago Nequi (se despliegan si eligen Nequi) -->
+            <div id="nequi-details-box" style="display: none; background-color: var(--natCream); border: 1px solid var(--natPeach); border-radius: 12px; padding: 12px; margin-top: 4px; animation: fadeIn var(--transition-fast) ease-out;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--natEspresso); text-transform: uppercase; letter-spacing: 0.5px;">Transferir a Nequi:</span>
+                <span style="font-size: 0.68rem; font-weight: 600; color: var(--natGold); background: rgba(185, 145, 104, 0.1); padding: 2px 8px; border-radius: 20px;">Cuenta Activa</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; background: var(--natWhite); border: 1px dashed var(--natPeach); border-radius: 8px; padding: 8px 12px;">
+                <span id="nequi-number-text" style="font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--natEspresso); letter-spacing: 1px;">320 573 0481</span>
+                <button type="button" onclick="window.copyNequiNumber()" style="background: none; border: none; color: var(--natGold); cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 0.72rem; font-weight: 700; padding: 4px 8px; transition: color var(--transition-fast);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1-1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+                  <span id="copy-btn-text">Copiar</span>
+                </button>
+              </div>
+              <p style="font-size: 0.68rem; color: rgba(74, 46, 27, 0.75); margin-top: 6px; line-height: 1.3;">Por favor, realiza la transferencia y **adjunta el comprobante de pago** en el chat de WhatsApp al enviar tu pedido.</p>
+            </div>
+
             <div class="form-group">
               <label for="client-notes" class="form-label">Notas Especiales (Opcional)</label>
               <textarea id="client-notes" class="form-input form-textarea" placeholder="Ej. Alergias, fecha/hora de entrega, dedicatoria para regalo..."></textarea>

@@ -7,8 +7,9 @@ import { PRODUCTS } from './products.js';
 import { calculateCartTotals, formatCOP } from './cart.js';
 
 // Generates the final redirection URL for the WhatsApp API
-export function generateWhatsAppLink(cart, name, phone, deliveryMethod, address, notes) {
+export function generateWhatsAppLink(cart, name, phone, deliveryMethod, address, notes, paymentMethod) {
   const deliveryStr = deliveryMethod === 'domicilio' ? address : 'Recoger en Tienda (Recogida física)';
+  const paymentStr = paymentMethod === 'nequi' ? 'Transferencia (Nequi)' : 'Efectivo (Contra entrega)';
 
   // Build the items summaries breakdown rows
   const summaries = cart.map(item => {
@@ -33,7 +34,7 @@ export function generateWhatsAppLink(cart, name, phone, deliveryMethod, address,
 
   // Construct structured text template in Spanish
   const message = `🍪 *¡Hola NatCookies!* Me gustaría realizar el siguiente pedido:
-
+ 
 📋 *RESUMEN DEL PEDIDO*
 ${summaries.join('\n')}
 --------------------------------------------------
@@ -41,13 +42,14 @@ ${summaries.join('\n')}
 🛵 *Domicilio:* ${shippingStr}
 ✨ *Total a Pagar:* *${formatCOP(grandTotal)} COP*
 --------------------------------------------------
-
+ 
 📍 *DATOS DE ENTREGA*
 👤 *Nombre:* ${name}
 📞 *Teléfono:* ${phone}
 🏡 *Dirección:* _${deliveryStr}_
+💳 *Método de Pago:* *${paymentStr}*
 💬 *Notas:* _${notes || 'Ninguna'}_
-
+ 
 🧁 _¡Muchas gracias! Espero la confirmación para realizar el pago._`;
 
   const encoded = encodeURIComponent(message);

@@ -420,8 +420,9 @@ async function handleCheckoutForm(event) {
   const method = document.getElementById('delivery-method').value;
   const address = document.getElementById('client-address').value.trim();
   const notes = document.getElementById('client-notes').value.trim();
+  const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
 
-  const url = generateWhatsAppLink(cart, name, phone, method, address, notes);
+  const url = generateWhatsAppLink(cart, name, phone, method, address, notes, paymentMethod);
   window.open(url, '_blank');
 }
 
@@ -522,6 +523,48 @@ window.toggleAddressField = () => {
 };
 
 window.handleCheckout = handleCheckoutForm;
+
+window.togglePaymentDetails = (method) => {
+  const nequiBox = document.getElementById('nequi-details-box');
+  const cashLabel = document.getElementById('pay-cash-label');
+  const nequiLabel = document.getElementById('pay-nequi-label');
+  if (!nequiBox || !cashLabel || !nequiLabel) return;
+  
+  if (method === 'nequi') {
+    nequiBox.style.display = 'block';
+    nequiLabel.style.border = '2px solid var(--natEspresso)';
+    nequiLabel.style.backgroundColor = 'var(--natCream)';
+    nequiLabel.classList.add('active');
+    cashLabel.style.border = '1px solid var(--natPeach)';
+    cashLabel.style.backgroundColor = 'transparent';
+    cashLabel.classList.remove('active');
+  } else {
+    nequiBox.style.display = 'none';
+    cashLabel.style.border = '2px solid var(--natEspresso)';
+    cashLabel.style.backgroundColor = 'var(--natCream)';
+    cashLabel.classList.add('active');
+    nequiLabel.style.border = '1px solid var(--natPeach)';
+    nequiLabel.style.backgroundColor = 'transparent';
+    nequiLabel.classList.remove('active');
+  }
+};
+
+window.copyNequiNumber = () => {
+  navigator.clipboard.writeText("3205730481").then(() => {
+    const btnText = document.getElementById('copy-btn-text');
+    if (btnText) {
+      btnText.textContent = "Copiado ✔";
+      btnText.style.color = "#557153";
+      setTimeout(() => {
+        btnText.textContent = "Copiar";
+        btnText.style.color = "var(--natGold)";
+      }, 2000);
+    }
+  }).catch(err => {
+    console.error("Failed to copy Nequi number: ", err);
+    alert("Número Nequi: 3205730481 (Copiado manual)");
+  });
+};
 
 // --- Ambient Background Music System ---
 let musicPlaying = false;
