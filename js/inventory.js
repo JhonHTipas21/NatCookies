@@ -7,15 +7,35 @@ import { PRODUCTS } from './products.js';
 
 let inventoryState = {};
 
+function getDefaultStock() {
+  const initial = {};
+  PRODUCTS.individual.forEach(cookie => {
+    initial[cookie.id] = 15;
+  });
+  PRODUCTS.catering.forEach(item => {
+    initial[item.id] = 5;
+  });
+  return initial;
+}
+
 // Fetches the current stock states from database or localStorage fallback
 export async function loadInventory() {
-  if (CONFIG.FIREBASE_DB_URL) {
+  const dbUrl = CONFIG.FIREBASE_DB_URL ? CONFIG.FIREBASE_DB_URL.replace(/\/+$/, '') : '';
+
+  if (dbUrl) {
     try {
-      const res = await fetch(`${CONFIG.FIREBASE_DB_URL}/inventory.json`);
+      const res = await fetch(`${dbUrl}/inventory.json`);
       if (res.ok) {
         const data = await res.json();
-        if (data) {
+        if (data && typeof data === 'object') {
           inventoryState = data;
+          localStorage.setItem('natcookies_inventory', JSON.stringify(data));
+          return inventoryState;
+        } else {
+          // Database is newly created and empty, initialize it
+          const initial = getDefaultStock();
+          inventoryState = initial;
+          await saveInventory(initial);
           return inventoryState;
         }
       }
@@ -30,14 +50,7 @@ export async function loadInventory() {
     inventoryState = JSON.parse(localData);
   } else {
     // Bootstrap initial default stock values (15 of each flavor, 5 of each catering)
-    const initial = {};
-    PRODUCTS.individual.forEach(cookie => {
-      initial[cookie.id] = 15;
-    });
-    PRODUCTS.catering.forEach(item => {
-      initial[item.id] = 5;
-    });
-    
+    const initial = getDefaultStock();
     inventoryState = initial;
     localStorage.setItem('natcookies_inventory', JSON.stringify(initial));
   }
@@ -50,9 +63,11 @@ export async function saveInventory(newInventory) {
   inventoryState = newInventory;
   localStorage.setItem('natcookies_inventory', JSON.stringify(newInventory));
 
-  if (CONFIG.FIREBASE_DB_URL) {
+  const dbUrl = CONFIG.FIREBASE_DB_URL ? CONFIG.FIREBASE_DB_URL.replace(/\/+$/, '') : '';
+
+  if (dbUrl) {
     try {
-      const res = await fetch(`${CONFIG.FIREBASE_DB_URL}/inventory.json`, {
+      const res = await fetch(`${dbUrl}/inventory.json`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newInventory)

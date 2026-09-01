@@ -7,9 +7,7 @@ export const CONFIG = {
   CONTACT_PHONE: "+573205730481",
 
   // URL de Firebase Realtime Database (REST API) para control de inventario sin re-despliegue.
-  // Ejemplo: "https://mi-proyecto-default-rtdb.firebaseio.com"
-  // Dejar en "" (vacío) para utilizar localStorage automáticamente.
-  FIREBASE_DB_URL: "",
+  FIREBASE_DB_URL: "https://natcookies-c06e5-default-rtdb.firebaseio.com",
 
   // Contraseña para ingresar al panel de administración de inventario (/admin.html)
   ADMIN_PASSCODE: "nat123"
