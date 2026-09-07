@@ -12,7 +12,8 @@ export const PRODUCTS = {
     { id: 'maracuya', name: 'Maracuyá', desc: 'Rellena con crema de maracuyá y chocolate blanco.', price: 6000, img: 'assets/maracuya.jpg', tag: 'Cremosa' },
     { id: 'churro', name: 'Churro', desc: 'Canela y azúcar con centro suave de dulce de leche.', price: 6000, img: 'assets/churro.jpg', tag: 'Rellena' },
     { id: 'leche_klim', name: 'Leche Klim', desc: 'Galleta suave con el dulce sabor de la leche en polvo Klim.', price: 6000, img: 'assets/leche_klim.jpg', tag: 'Especial' },
-    { id: 'birthday_cake', name: 'Birthday Cake', desc: 'Vainilla con chispas de colores, chocolate blanco y suave cubierta festiva.', price: 6000, img: 'assets/birthday_cake.jpg', tag: 'Festiva' }
+    { id: 'birthday_cake', name: 'Birthday Cake', desc: 'Vainilla con chispas de colores, chocolate blanco y suave cubierta festiva.', price: 6000, img: 'assets/birthday_cake.jpg', tag: 'Festiva' },
+    { id: 'limon', name: 'Limón', desc: 'Galleta suave con cubierta cremosa de limón y ralladura natural fresca.', price: 6000, img: 'assets/limon.jpg', tag: 'Cítrica' }
   ],
   
   // Cajas personalizadas
