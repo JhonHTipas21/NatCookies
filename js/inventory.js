@@ -28,8 +28,9 @@ export async function loadInventory() {
       if (res.ok) {
         const data = await res.json();
         if (data && typeof data === 'object') {
-          inventoryState = data;
-          localStorage.setItem('natcookies_inventory', JSON.stringify(data));
+          const defaults = getDefaultStock();
+          inventoryState = { ...defaults, ...data };
+          localStorage.setItem('natcookies_inventory', JSON.stringify(inventoryState));
           return inventoryState;
         } else {
           // Database is newly created and empty, initialize it
@@ -47,7 +48,8 @@ export async function loadInventory() {
   // LocalStorage fallback
   const localData = localStorage.getItem('natcookies_inventory');
   if (localData) {
-    inventoryState = JSON.parse(localData);
+    const defaults = getDefaultStock();
+    inventoryState = { ...defaults, ...JSON.parse(localData) };
   } else {
     // Bootstrap initial default stock values (15 of each flavor, 5 of each catering)
     const initial = getDefaultStock();
