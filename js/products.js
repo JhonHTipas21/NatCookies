@@ -14,7 +14,8 @@ export const PRODUCTS = {
     { id: 'leche_klim', name: 'Leche Klim', desc: 'Galleta suave con el dulce sabor de la leche en polvo Klim.', price: 6000, img: 'assets/leche_klim.jpg', tag: 'Especial' },
     { id: 'birthday_cake', name: 'Birthday Cake', desc: 'Vainilla con chispas de colores, chocolate blanco y suave cubierta festiva.', price: 6000, img: 'assets/birthday_cake.jpg', tag: 'Festiva' },
     { id: 'limon', name: 'Limón', desc: 'Galleta suave con cubierta cremosa de limón y ralladura natural fresca.', price: 6000, img: 'assets/limon.jpg', tag: 'Cítrica' },
-    { id: 'kinder', name: 'Kinder Bueno', desc: 'Galleta suave artesanal con centro de crema de avellana y coronada con crujiente chocolate Kinder Bueno.', price: 6000, img: 'assets/kinder.jpeg', tag: 'Irresistible' }
+    { id: 'kinder', name: 'Kinder Bueno', desc: 'Galleta suave artesanal con centro de crema de avellana y coronada con crujiente chocolate Kinder Bueno.', price: 6000, img: 'assets/kinder.jpeg', tag: 'Irresistible' },
+    { id: 'oblea', name: 'Oblea', desc: 'Galleta suave artesanal con dulce de mora casero y coronada con crujiente oblea tradicional.', price: 6000, img: 'assets/oblea.jpeg', tag: 'Tradicional' }
   ],
   
   // Cajas personalizadas
